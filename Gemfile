@@ -73,3 +73,5 @@ gem "jquery-rails"
 gem 'dotenv-rails'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'rails-i18n'
+gem "carrierwave"
+gem "mini_magick"
