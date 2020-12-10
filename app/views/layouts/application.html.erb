@@ -21,7 +21,7 @@
               ようこそ、<%= current_user.name %>さん！
             </li>
             <li>
-              <%= link_to "マイページ", users_path(current_user), class: "header_btn glyphicon glyphicon-home" %>
+              <%= link_to "マイページ", user_path(current_user), class: "header_btn glyphicon glyphicon-home" %>
             </li>
             <li>
               <%= link_to "投稿一覧", posts_path, class: "header_btn glyphicon glyphicon-book" %>
