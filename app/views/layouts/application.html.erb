@@ -4,12 +4,60 @@
     <title>PicNov</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/a882e813e6.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body id ="wrapper">
+    <header>
+      <nav class="nav navbar-nav navbar-left title">
+        <%= link_to "PicNov", root_path, class: "fas fa-camera-retro" %>
+      </nav>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li class="header-name">
+              ようこそ、<%= current_user.name %>さん！
+            </li>
+            <li>
+              <%= link_to "マイページ", users_path(current_user), class: "header_btn glyphicon glyphicon-home" %>
+            </li>
+            <li>
+              <%= link_to "投稿一覧", posts_path, class: "header_btn glyphicon glyphicon-book" %>
+            </li>
+            <li>
+              <%= link_to "投稿フォーム", new_post_path, class: "header_btn glyphicon glyphicon-pencil" %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header_btn glyphicon glyphicon-log-out" %>
+            </li>
+            <!--ここに検索機能追加-->
+          <% else %>
+            <li>
+              <%= link_to "新規登録", new_user_registration_path, class: "header_btn glyphicon glyphicon-edit" %>
+            </li>
+            <li>
+              <%= link_to "ログイン", new_user_session_path, class: "header_btn glyphicon glyphicon-log-in" %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <%= yield %>
+    </div>
+    <footer>
+      <ul class="footer-menu">
+        <li>
+          <%= link_to "home", root_path %> ｜
+        </li>
+        <li>
+          <%= link_to "about", home_about_path %> ｜
+        </li>
+      </ul>
+      <p>© All rights reserved by Hiroshi Asano</p>
+    </footer>
   </body>
 </html>

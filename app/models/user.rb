@@ -17,4 +17,34 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
    attachment :profile_image
+   
+   # ユーザーをフォローする
+  def follow(user_id)
+    active_relationships.create(followed_id: user_id)
+  end
+
+  # ユーザーをフォロー解除する
+  def unfollow(user_id)
+    active_relationships.find_by(followed_id: user_id).destroy
+  end
+
+  # 現在のユーザーがフォローしてたらtrueを返す
+  def following?(user)
+    following.include?(user)
+  end
+
+  def self.search(search,keyword)
+    if search == "forward_match"
+      @users = User.where("name LIKE?","#{keyword}%")
+    elsif search == "backward_match"
+      @users = User.where("name LIKE?","%#{keyword}")
+    elsif search == "perfect_match"
+      @users = User.where(name:keyword)
+    elsif search == "partial_match"
+      @users = User.where("name LIKE?","%#{keyword}%")
+    else
+      @users = User.all
+    end
+  end
+
 end
