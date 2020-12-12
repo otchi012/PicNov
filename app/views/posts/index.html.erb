@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-8 col-sm-offset-2">
+    <div class="masonry-wrapper-cols">
+      <div class="masonry-gutter"></div>
+      <% @posts.each do |post| %>
+        <div class="masonry-block">
+          <div class="block block-image v1">
+            <div class="block-image">
+              <div class="view view-first">
+                <%= link_to post_path(post.id) do %>
+                  <%= image_tag post.post_image.url, :src %>
+                <% end %>
+              </div>
+            </div>
+            <div class="block-content">
+              <%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
+              <h3 class="block-title">
+                <%= link_to post_path(post.id) do %>
+                  <i class="fa fa-map-marker"></i><%= post.title %>
+                <% end %>
+              </h3>
+              <ul class="inline-meta">
+                <li>By
+                  <%= post.user.name %>
+                </li>
+                <li>
+                  <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>

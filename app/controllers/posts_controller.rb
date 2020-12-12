@@ -8,18 +8,22 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user
+    @post.user_id = current_user.id
+
+    puts "======================"
+    puts post_params
+    puts "======================"
+
     if @post.save
       flash[:notice] ='You have created post successfully'
       redirect_to post_path(@post)
     else
-      @post = Post.new
       render :new
     end
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).reverse_order
     @user = current_user
   end
 
