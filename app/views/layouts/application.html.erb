@@ -12,7 +12,10 @@
   <body id ="wrapper">
     <header>
       <nav class="nav navbar-nav navbar-left title">
-        <%= link_to "PicNov", root_path, class: "fas fa-camera-retro" %>
+        <%= link_to root_path, class: "fas fa-camera-retro" do %>
+          PicNov
+          <i class="fas fa-pen-nib"></i>
+        <% end %>
       </nav>
       <nav>
         <ul class="nav navbar-nav navbar-right">
