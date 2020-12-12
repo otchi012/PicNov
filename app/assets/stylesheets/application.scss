@@ -44,7 +44,26 @@ header {
   top: 0;
   z-index:9999;
   width: 100%;
- }
+}
+
+.title {
+  font-size: 30px;
+}
+
+#error_explanation {
+  color: red;
+}
+
+#error_explanation ul li {
+  color: red;
+}
+
+.notice {
+  color: #54626f;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 18px;
+}
 
 .container {
   height: 100%;
