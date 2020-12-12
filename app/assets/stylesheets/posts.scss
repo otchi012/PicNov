@@ -6,3 +6,51 @@
   height: 180px;
   background-color: #EEEEEE;
 }
+
+//image投稿欄のCSS
+.dropzone-container{
+  display: block;
+  margin: 16px auto 0;
+  display: flex;
+
+  //プレビュー表示欄のCSS
+  #preview{
+    display: flex;
+
+    .img_view {
+      height: 162px;
+      width: 112px;
+      margin: 0 15px 10px 0;
+
+      img{
+        width: 112px;
+        height: 112px;
+      }
+    }
+
+      .btn_wrapper {
+        display: flex;
+        text-align: center;
+
+        .btn.edit {
+          color: #00b0ff;
+          width: 50%;
+          height: 50px;
+          line-height: 50px;
+          border: 1px solid #eee;
+          background: #f5f5f5;
+          cursor: pointer;
+        }
+
+        .btn.delete {
+          color: #00b0ff;
+          width: 50%;
+          height: 50px;
+          line-height: 50px;
+          border: 1px solid #eee;
+          background: #f5f5f5;
+          cursor: pointer;
+        }
+      }
+    }
+  }

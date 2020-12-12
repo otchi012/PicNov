@@ -6,16 +6,22 @@
       <div class="col-xs-4 col-xs-offset-1">
         <div class="img_field">
           <%= f.fields_for :post_images do |image| %>
-            <%= image.label :"イメージ", class: "dropzone-box", for: "upload-image" do %>
-              <%= image.file_field :src, multiple: true, name: 'post_post_images[image][]', id: "upload-image", class: "upload-image", 'data-image': 0 %>
-            <% end %>
+            <div class="dropzone-container">
+              <div class="preview">
+                <div class="dropzone-area">
+                  <%= image.label :"イメージ", class: "dropzone-box", for: "upload-image" do %>
+                    <%= image.file_field :src, multiple: true, id: "upload-image", class: "upload-image", 'data-image': 0 %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
           <% end %>
         </div>
       </div>
       <div class="col-xs-6">
         <div class="form-group">
          <%= f.label :"タイトル", class: "col-sm-3 control-label" %>
-         <%= f.text_field :title, class: "col-sm-9 form-control-static title" %>
+         <%= f.text_field :title, class: "col-sm-9 control-label title" %>
       </div>
       <div class="form-group">
          <%= f.label :"本文", class: "col-sm-3 control-label" %>
@@ -23,7 +29,7 @@
       </div>
       <div class="form-group">
          <%= f.label :"タグ", class: "col-sm-3 control-label" %>
-         <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
+         <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "col-sm-9 control-label tag_list" %>
       </div>
       </div>
       <div class="actions col-xs-7">
