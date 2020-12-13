@@ -1,2 +1,35 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<div class="row">
+  <div class="col-xs-12">
+    <h2 class="head-line title_h2 text-center">投稿編集</h2>
+    <%= form_with model:@post, local: true do |f| %>
+      <%= render "layouts/error_messages", resource: @post %>
+      <div class="col-xs-4 col-xs-offset-1">
+        <div class="img_field">
+          <% @post.post_images.first(1).each do |image| %>
+            <%= attachment_image_tag image, :image, :fill, 100, 100, class: "default_image" %>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.attachment_field :post_images_images, multiple: true %>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+         <%= f.label :"タイトル", class: "col-sm-3 control-label" %>
+         <%= f.text_field :title, class: "col-sm-9 control-label title" %>
+      </div>
+      <div class="form-group">
+         <%= f.label :"本文", class: "col-sm-3 control-label" %>
+         <%= f.text_area :body, class: "col-sm-9 control-label body" %>
+      </div>
+      <div class="form-group">
+         <%= f.label :"タグ", class: "col-sm-3 control-label" %>
+         <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "col-sm-9 control-label tag_list" %>
+      </div>
+      </div>
+      <div class="actions col-xs-7">
+	     <%= f.submit "変更を保存", class: "btn btn-primary pull-right" %>
+      </div>
+    <% end %>
+  </div>
+</div>

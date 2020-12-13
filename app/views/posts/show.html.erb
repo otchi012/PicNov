@@ -1,2 +1,57 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="col-md-12 posts_container">
+  <div class="post-item">
+    <div class="post-meta-top">
+      <div class="post-image">
+        <% @post.post_images.first(1).each do |image| %>
+          <%= attachment_image_tag image, :image, :fill, 200, 200, class: "default_image" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="post-meta-top">
+      <div class="post-body">
+        <%= @post.body %>
+      </div>
+    </div>
+    </div>
+    <div class="post-content">
+      <h2 class="post-title"><%= @post.title %></h2>
+      <ul class="meta-info-cells v4 float-wrapper">
+        <li>
+          <i class="fa fa-user"></i>By
+          <a href="#"><%= @post.user.name %></a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i><%= @post.created_at.strftime('%Y/%m/%d') %>
+        </li>
+        <% if @post.favorited_by?(current_user) %>
+        <li>
+          <%= link_to post_favorites_path(@post), method: :delete do %>
+            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+            <%= @post.favorites.count %> いいね
+          <% end %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to post_favorites_path(@post), method: :post do %>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <%= @post.favorites.count %> いいね
+          <% end %>
+        </li>
+        <% end %>
+        <li>
+          <i class="fa fa-comment"></i>
+          <a href="#comments"><%= @post.post_comments.count %></a>
+        </li>
+        <li>
+          <%= render 'posts/tag_list', tag_list: @post.tag_list %>
+        </li>
+        <li>
+          <% if @post.user == current_user %>
+            <%= link_to "編集", edit_post_path(@post) %>
+            <%= link_to "削除", post_path(@post), method: :delete %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
