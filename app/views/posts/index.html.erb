@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-md-8 col-sm-offset-2">
+    <h2 class="head-line title_h2 text-center">投稿一覧</h2>
     <div class="masonry-wrapper-cols">
       <div class="masonry-gutter"></div>
       <% @posts.each do |post| %>
@@ -8,7 +9,13 @@
             <div class="block-image">
               <div class="view view-first">
                 <%= link_to post_path(post.id) do %>
-                  <%= image_tag post.post_image.url, :src %>
+                  <% if post.post_images.present? %>
+                    <% post.post_images.first(1).each do |image| %>
+                      <%= attachment_image_tag image, :image, :fill, 100, 100, class: "default_image" %>
+                    <% end %>
+                  <% else %>
+                    画像はありません。
+                  <% end %>
                 <% end %>
               </div>
             </div>

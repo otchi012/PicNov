@@ -9,11 +9,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
-    puts "======================"
-    puts post_params
-    puts "======================"
-
     if @post.save
       flash[:notice] ='You have created post successfully'
       redirect_to post_path(@post)
@@ -24,7 +19,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).reverse_order
-    @user = current_user
+    @users = current_user
   end
 
   def show
@@ -64,7 +59,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :tag_list,
-      post_images_attributes: [:src, :_destroy, :id])
+    params.require(:post).permit(:title, :body, :tag_list, post_images_images: [])
   end
 end
