@@ -14,15 +14,15 @@ class Post < ApplicationRecord
 
   def self.search(search, keyword)
     if search == "forward_match"
-      @posts = post.where("title LIKE?","#{keyword}%")
+      @posts = Post.where("title LIKE?","#{keyword}%")
     elsif search == "backward_match"
-      @posts = post.where("title LIKE?","%#{keyword}")
+      @posts = Post.where("title LIKE?","%#{keyword}")
     elsif search == "perfect_match"
-      @posts = post.where(title:keyword)
+      @posts = Post.where(title:keyword)
     elsif search == "partial_match"
-      @posts = post.where("title LIKE?","%#{keyword}%")
+      @posts = Post.where("title LIKE?","%#{keyword}%")
     else
-      @posts = post.all
+      @posts = Post.all
     end
   end
 
