@@ -1,2 +1,2 @@
-<h1>PostComments#destroy</h1>
-<p>Find me in app/views/post_comments/destroy.html.erb</p>
+$(".comments_area").html("<%= j(render 'post_comments/index', post: @post) %>");
+$(".comment-count").html("コメント数: <%= @post.post_comments.count %>");

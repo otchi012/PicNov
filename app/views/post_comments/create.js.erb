@@ -1,2 +1,4 @@
-<h1>PostComments#create</h1>
-<p>Find me in app/views/post_comments/create.html.erb</p>
+$(".comments_area").html("<%= j(render 'post_comments/index', post: @post) %>");
+$("textarea").val('');
+
+$(".comment-count").html("コメント数: <%= @post.post_comments.count %>");

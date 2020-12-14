@@ -26,14 +26,11 @@
                 <% end %>
               </h3>
               <ul class="inline-meta">
-                <li>
-                  <%= link_to post_favorites_path(post), method: :post do %>
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    <%= post.favorites.count %> いいね
-                  <% end %>
+                <li class="favorite-btn_<%= post.id %>">
+                  <%= render 'favorites/favorite-btn', post: post %>
                 </li>
-                <li>
-                  <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+                <li class="comment-count">
+                  <%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %>
                 </li>
                 <li>
                   <%= render 'posts/tag_list', tag_list: post.tag_list %>
