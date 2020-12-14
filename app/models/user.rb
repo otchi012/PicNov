@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
    attachment :profile_image
-   
+
    # ユーザーをフォローする
   def follow(user_id)
     active_relationships.create(followed_id: user_id)
