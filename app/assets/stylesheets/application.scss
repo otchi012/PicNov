@@ -89,3 +89,26 @@ ul.post-index-header li {
 .post-image .post-body {
   display: inline-block;
 }
+
+.hero {
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+.skippr {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero .container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    z-index: 999;
+}
