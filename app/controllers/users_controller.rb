@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = @user.posts
+    @posts = @user.posts
   end
 
   def edit
@@ -26,15 +26,15 @@ class UsersController < ApplicationController
   end
 
   def following
-    @user = User.find(params[:id])
     @title = "Following"
+    @user = User.find(params[:id])
     @users = @user.following
     render 'show_following'
   end
 
   def followers
-    @user  = User.find(params[:id])
     @title = "Followers"
+    @user  = User.find(params[:id])
     @users = @user.followers
     render 'show_followers'
   end
