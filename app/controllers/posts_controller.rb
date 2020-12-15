@@ -18,11 +18,14 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).reverse_order
-    @users = current_user
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}")
+    else
+      @posts = Post.all
     end
+    @posts = Post.page(params[:page]).reverse_order
+    # @users =
+
   end
 
   def show
