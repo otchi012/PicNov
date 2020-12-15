@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   acts_as_taggable
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :user #ランキング機能
   has_many :post_comments, dependent: :destroy
   has_many :post_images, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image

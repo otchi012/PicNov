@@ -17,7 +17,9 @@
       <ul class="meta-info-cells v4 float-wrapper">
         <li>
           <i class="fa fa-user"></i>By
-          <a href="#"><%= @post.user.name %></a>
+          <%= link_to user_path(@post.user.id) do %>
+            <%= @post.user.name %>
+          <% end %>
         </li>
         <li>
           <i class="fa fa-calendar"></i><%= @post.created_at.strftime('%Y/%m/%d') %>
