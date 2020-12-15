@@ -19,12 +19,12 @@
           <%= user.name %>
         </td>
         <td>
-          <!--フォロー数：-->
-          <!--%= user.following.count %>-->
+          フォロー数：
+          <%= user.following.count %>
         </td>
         <td>
-          <!--フォロワー数：-->
-          <!--%= user.followers.count %>-->
+          フォロワー数：
+          <%= user.followers.count %>
         </td>
         <td>
           <% if current_user.following?(user) %>
