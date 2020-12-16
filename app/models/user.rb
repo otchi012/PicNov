@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 20 }
-  validates :introduction, length: { maximum: 50, message: 'is too long (maximum is %{count} characters)' }
+  validates :introduction, length: { maximum: 50}
 
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
