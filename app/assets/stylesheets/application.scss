@@ -86,10 +86,29 @@ ul.post-index-header li {
   display: inline;
 }
 
+.post-content {
+  margin-top: 5%;
+}
+
+ul.post-content-list li {
+   display: inline;
+}
+
+.calendar {
+  padding-left: 5%;
+}
+
 .post-image .post-body {
   display: inline-block;
 }
 
+.comments_area {
+  border-top: 1px solid #000;
+}
+
+.comment-new {
+  margin-top : 2%;
+}
 .hero {
     width: 100%;
     height: 500px;

@@ -1,29 +1,37 @@
-<div class="col-md-12 posts_container">
-  <div class="post-item">
-    <div class="post-meta-top">
-      <div class="post-image">
-        <% @post.post_images.first(1).each do |image| %>
-          <%= attachment_image_tag image, :image, :fill, 200, 200, class: "default_image" %>
-        <% end %>
-      </div>
+<div class="row">
+  <div class="col-md-7">
+    <h2 class="post-title"><%= @post.title %></h2>
+    <div class ="post-body-box">
+      <p class="post-body"><%= @post.body %></p>
     </div>
-    <div class="post-meta-top">
-      <div class="post-body">
-        <%= @post.body %>
-      </div>
+  </div>
+  <div class="col-md-5">
+    <div class="post-image">
+      <% @post.post_images.first(1).each do |image| %>
+        <%= attachment_image_tag image, :image, :fill, 500, 400, class: "default_image" %>
+      <% end %>
     </div>
     <div class="post-content">
-      <h2 class="post-title"><%= @post.title %></h2>
-      <ul class="meta-info-cells v4 float-wrapper">
+      <ul class="post-content-list">
         <li>
-          <i class="fa fa-user"></i>By
+          <% if @post.user == current_user %>
+            <%= link_to "編集", edit_post_path(@post) %>
+            <%= link_to "削除", post_path(@post), method: :delete %>
+          <% end %>
+        </li>
+      </ul>
+      <ul class="post-content-list">
+        <li>
           <%= link_to user_path(@post.user.id) do %>
+            <%= attachment_image_tag @post.user, :profile_image, :fill, 30, 30, format: 'jpeg', class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
             <%= @post.user.name %>
           <% end %>
         </li>
-        <li>
+        <li class="calendar">
           <i class="fa fa-calendar"></i><%= @post.created_at.strftime('%Y/%m/%d') %>
         </li>
+      </ul>
+      <ul class="post-content-list">
         <li class="favorite-btn">
           <%= render 'favorites/favorite-btn', post: @post %>
         </li>
@@ -33,25 +41,24 @@
             コメント数:<%= @post.post_comments.count %>
           </a>
         </li>
+      </ul>
+      <ul class="post-content-list">
         <li>
           <%= render 'posts/tag_list', tag_list: @post.tag_list %>
         </li>
-        <li>
-          <% if @post.user == current_user %>
-            <%= link_to "編集", edit_post_path(@post) %>
-            <%= link_to "削除", post_path(@post), method: :delete %>
-          <% end %>
-        </li>
       </ul>
-    </div>
-    <div class="comments_area">
-      <%= render 'post_comments/index', post: @post %>
-    </div>
-    <div class="comment-new">
-      <%= form_with(model:[@post, @post_comment]) do |f| %>
-        <%= f.text_area :comment %>
-        <%= f.submit "送信" %>
-      <% end %>
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="comments_area">
+    <%= render 'post_comments/index', post: @post %>
+  </div>
+  <div class="comment-new">
+    <%= form_with(model:[@post, @post_comment]) do |f| %>
+      <%= f.text_area :comment %>
+      <%= f.submit "送信" %>
+    <% end %>
+  </div>
+</div>
+
