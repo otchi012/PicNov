@@ -26,13 +26,6 @@ class PostsController < ApplicationController
     # ランキング機能
     posts = Post.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
     @posts = Kaminari.paginate_array(posts).page(params[:page]).per(5)
-
-
-    # post_favorite_count = Post.joins(:favorites).group(:post_id).count
-    # post_favorited_ids = Hash[post_favorite_count.sort_by{ |_, v| -v }].keys #valueが大きい順に並び替え
-    # @post_ranking= Post.where(id: post_favorited_ids)
-    # @users =
-
   end
 
   def show
