@@ -132,6 +132,10 @@ ul.post-content-list li {
     z-index: 999;
 }
 
+.top-message {
+  color: #ffff00;
+}
+
 .image1 {
   background-image: image-url("image1.jpg");
 }
@@ -154,3 +158,6 @@ ul.post-content-list li {
   background-image: image-url("image7.jpg");
 }
 
+.btn-wrapper .row{
+  padding: 2px;
+}

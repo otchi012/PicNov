@@ -18,13 +18,11 @@ class PostsController < ApplicationController
   end
 
   def index
-    if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}")
-    else
-      @posts = Post.all
-    end
+    # binding.pry
+    @posts = Post.all
+    @posts = Post.tagged_with("#{params[:tag_name]}") if params[:tag_name]
     # ランキング機能
-    posts = Post.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    posts = @posts.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
     @posts = Kaminari.paginate_array(posts).page(params[:page]).per(5)
   end
 
