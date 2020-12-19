@@ -143,14 +143,34 @@ ul.post-content-list li {
 }
 
 // ABOUT
-.picnov-new {
-  background-image: image-url("PicNov-new.png");
-  background-size: cover;
-}
-.picnov-show {
-  background-image: image-url("PicNov-show.png");
-  background-size: cover;
-  background-position: center;
+.explain-pic {
+  width: 1200px;
+  height: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::before {
+    content: "";
+    display: inline-block;
+    background-image: image-url("PicNov-new.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid #cccc;
+    width: 600px;
+    height: 300px;
+  }
+  &::after {
+    content: "";
+    display: inline-block;
+    background-image: image-url("PicNov-show.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid #cccc;
+    margin-left:  10px;
+    width: 600px;
+    height: 300px;
+  }
 }
 // スライダー
 .hero {
