@@ -2,7 +2,7 @@
   <div class="col-md-7">
     <h2 class="post-title"><%= @post.title %></h2>
     <div class ="post-body-box">
-      <%=safe_join(@post.body.split("\n"),tag(:br))%>
+      <%=safe_join(@post.body.split("\n"),tag(:br))%> <!--Pを無視し、入力通りに改行やスペースを表記-->
     </div>
   </div>
   <div class="col-md-5">

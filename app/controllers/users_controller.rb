@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+     posts = @posts.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    @posts = Kaminari.paginate_array(posts).page(params[:page]).per(5)
   end
 
   def edit
