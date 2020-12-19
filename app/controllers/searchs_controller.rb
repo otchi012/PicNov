@@ -5,9 +5,9 @@ class SearchsController < ApplicationController
     keyword = params[:keyword]
 
     if @model == 'user'
-      @users = User.search(search,keyword)
+      @users = User.search(search, keyword)
     else
-      @posts = Post.search(search,keyword)
+      @posts = Post.search(search, keyword)
     end
   end
 end

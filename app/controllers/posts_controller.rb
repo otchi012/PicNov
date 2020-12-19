@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:notice] ='投稿を登録しました。'
+      flash[:notice] = '投稿を登録しました。'
       redirect_to post_path(@post)
     else
       render :new
@@ -22,7 +22,8 @@ class PostsController < ApplicationController
     @tags = Post.tag_counts_on(:tags).most_used(20)
     @posts = Post.tagged_with("#{params[:tag_name]}") if params[:tag_name]
     # ランキング機能
-    posts = @posts.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    posts = @posts.includes(:favorited_users).
+      sort { |a, b| b.favorited_users.size <=> a.favorited_users.size }
     @posts = Kaminari.paginate_array(posts).page(params[:page]).per(5)
   end
 
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    if @post.user = current_user
+    if @post.user == current_user
       render :edit
     else
       redirect_to posts_path
@@ -44,7 +45,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] ='投稿を更新しました。'
+      flash[:notice] = '投稿を更新しました。'
       redirect_to post_path(@post)
     else
       render :edit
@@ -54,7 +55,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
-      flash[:notice] ='投稿を削除しました。'
+      flash[:notice] = '投稿を削除しました。'
       redirect_to posts_path
     else
       render :index
@@ -62,6 +63,7 @@ class PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:title, :body, :tag_list, post_images_images: [])
   end
