@@ -17,8 +17,9 @@
       <ul class="post-content-list">
         <li>
           <% if @post.user == current_user %>
-            <%= link_to "編集", edit_post_path(@post) %>
-            <%= link_to "削除", post_path(@post), method: :delete %>
+            <%= link_to "編集", edit_post_path(@post), class: "glyphicon glyphicon-pencil btn btn-success" %>
+            <%= link_to "削除", post_path(@post), method: :delete,
+              data: {confirm: "本当に削除してよろしいですか？"}, class: "glyphicon glyphicon-tint btn btn-danger" %>
           <% end %>
         </li>
       </ul>
@@ -39,9 +40,9 @@
         </li>
         <li>
           <i class="fa fa-comment"></i>
-          <a class="comment-count">
-            コメント数:<%= @post.post_comments.count %>
-          </a>
+          <span class="comment-count">
+            <%= @post.post_comments.count %>
+          </span>
         </li>
       </ul>
       <ul class="post-content-list">

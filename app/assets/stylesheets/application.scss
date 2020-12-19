@@ -115,16 +115,22 @@ ul.post-content-list li {
 }
 
 .tag-index {
-  border-right: 1px solid #000;
+  padding: 40px;
+  border: 1px solid #000;
 }
 
 .index-post {
-  margin-top: 40px;
-  border-bottom: 1px solid #000;
+  padding: 40px;
+  border: 1px solid #000;
 }
 
 .index-post>.post-content {
   display: inline-block;
+}
+
+.field {
+  margin-top: 5%;
+
 }
 
 .hero {

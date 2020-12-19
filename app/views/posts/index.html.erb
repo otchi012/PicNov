@@ -1,10 +1,10 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-3 side-bar">
+    <h3 class="text-center">タグ一覧</h3>
     <div class="tag-index">
-      <h3>タグ一覧</h3>
       <% if @tags.present? %>
         <% @tags.each do |tag| %>
-          <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+          <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag_name: tag.name) %>
         <% end %>
       <% else %>
         登録されたタグはありません。
@@ -14,3 +14,4 @@
   <div class="col-md-9">
     <%= render "posts/post_list", posts: @posts %>
   </div>
+</div>
