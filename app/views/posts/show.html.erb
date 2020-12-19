@@ -13,44 +13,45 @@
         <% end %>
     </div>
   </div>
-    <div class="post-content">
-      <ul class="post-content-list">
-        <li>
-          <% if @post.user == current_user %>
-            <%= link_to "編集", edit_post_path(@post), class: "glyphicon glyphicon-pencil btn btn-success" %>
-            <%= link_to "削除", post_path(@post), method: :delete,
-              data: {confirm: "本当に削除してよろしいですか？"}, class: "glyphicon glyphicon-tint btn btn-danger" %>
-          <% end %>
-        </li>
-      </ul>
-      <ul class="post-content-list">
-        <li>
-          <%= link_to user_path(@post.user.id) do %>
-            <%= attachment_image_tag @post.user, :profile_image, :fill, 30, 30, format: 'jpeg', class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
-            <%= @post.user.name %>
-          <% end %>
-        </li>
-        <li class="calendar">
-          <i class="fa fa-calendar"></i><%= @post.created_at.strftime('%Y/%m/%d') %>
-        </li>
-      </ul>
-      <ul class="post-content-list">
-        <li class="favorite-btn">
-          <%= render 'favorites/favorite-btn', post: @post %>
-        </li>
-        <li>
-          <i class="fa fa-comment"></i>
-          <span class="comment-count">
-            <%= @post.post_comments.count %>
-          </span>
-        </li>
-      </ul>
-      <ul class="post-content-list">
-        <li>
-          <%= render 'posts/tag_list', tag_list: @post.tag_list %>
-        </li>
-      </ul>
-    </div>
+</div>
+<div class="row">
+  <div class="post-content">
+    <ul class="post-content-list">
+      <li>
+        <% if @post.user == current_user %>
+          <%= link_to "編集", edit_post_path(@post), class: "glyphicon glyphicon-pencil btn btn-success" %>
+          <%= link_to "削除", post_path(@post), method: :delete,
+            data: {confirm: "本当に削除してよろしいですか？"}, class: "glyphicon glyphicon-tint btn btn-danger" %>
+        <% end %>
+      </li>
+    </ul>
+    <ul class="post-content-list">
+      <li>
+        <%= link_to user_path(@post.user.id) do %>
+          <%= attachment_image_tag @post.user, :profile_image, :fill, 30, 30, format: 'jpeg', class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
+          <%= @post.user.name %>
+        <% end %>
+      </li>
+      <li class="calendar">
+        <i class="fa fa-calendar"></i><%= @post.created_at.strftime('%Y/%m/%d') %>
+      </li>
+    </ul>
+    <ul class="post-content-list">
+      <li class="favorite-btn">
+        <%= render 'favorites/favorite-btn', post: @post %>
+      </li>
+      <li>
+        <i class="fa fa-comment"></i>
+        <span class="comment-count">
+          <%= @post.post_comments.count %>
+        </span>
+      </li>
+    </ul>
+    <ul class="post-content-list">
+      <li>
+        <%= render 'posts/tag_list', tag_list: @post.tag_list %>
+      </li>
+    </ul>
   </div>
 </div>
 <div class="row">
