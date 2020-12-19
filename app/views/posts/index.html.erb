@@ -2,6 +2,13 @@
   <div class="col-md-3">
     <div class="tag-index">
       <h3>タグ一覧</h3>
+      <% if @tags.present? %>
+        <% @tags.each do |tag| %>
+          <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+        <% end %>
+      <% else %>
+        登録されたタグはありません。
+      <% end %>
     </div>
   </div>
   <div class="col-md-9">

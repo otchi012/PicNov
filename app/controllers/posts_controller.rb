@@ -18,8 +18,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    # binding.pry
     @posts = Post.all
+    @tags = Post.tag_counts_on(:tags).most_used(20)
     @posts = Post.tagged_with("#{params[:tag_name]}") if params[:tag_name]
     # ランキング機能
     posts = @posts.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
