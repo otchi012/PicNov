@@ -16,12 +16,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// リセット
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+// application
 body {
   background-image: image-url("PP_keshigomutopen.jpg");
   background-color:rgba(255,255,255,0.8);
@@ -82,16 +84,14 @@ ul.footer-menu li {
   display: inline;
 }
 
-ul.post-index-header li {
-  display: inline;
-}
-
+// post
 .post-content {
   margin-top: 5%;
 }
 
 ul.post-content-list li {
    display: inline;
+   font-size:  20px;
 }
 
 .calendar {
@@ -101,56 +101,58 @@ ul.post-content-list li {
 .post-body-box {
   display: inline-block;
 }
-
 .post-image  {
   display: inline-block;
 }
+.index-post {
+  padding: 40px;
+  border: 1px solid #000;
+}
+.index-post>.post-content {
+  display: inline-block;
+}
+.field {
+  margin-top: 5%;
+}
 
+// コメント
 .comments_area {
   border-top: 1px solid #000;
 }
-
 .comment-new {
   margin-top : 2%;
 }
 
+// タグ
 .tag-index {
   padding: 40px;
   border: 1px solid #000;
 }
 
-.index-post {
-  padding: 40px;
-  border: 1px solid #000;
+// TOP
+.btn-wrapper .row{
+  padding: 2px;
+}
+.top-message {
+  color: #ffff00;
 }
 
-.index-post>.post-content {
-  display: inline-block;
-}
-
-.field {
-  margin-top: 5%;
-
-}
-
+// スライダー
 .hero {
     width: 100%;
     height: 500px;
     position: relative;
 }
-
 .hero-post {
   width: 500px;
   height: 400px;
 }
-
 .skippr {
     width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden;
 }
-
 .hero .container {
     position: absolute;
     left: 50%;
@@ -160,11 +162,6 @@ ul.post-content-list li {
     height: 80%;
     z-index: 999;
 }
-
-.top-message {
-  color: #ffff00;
-}
-
 .image1 {
   background-image: image-url("image1.jpg");
 }
@@ -185,8 +182,4 @@ ul.post-content-list li {
 }
 .image7 {
   background-image: image-url("image7.jpg");
-}
-
-.btn-wrapper .row{
-  padding: 2px;
 }
