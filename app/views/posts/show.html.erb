@@ -18,12 +18,19 @@
   <div class="col-md-5 col-md-offset-7">
     <div class="post-content">
       <ul class="post-content-list">
+        <li class="favorite-btn">
+          <%= render 'favorites/favorite-btn', post: @post %>
+        </li>
         <li>
-          <% if @post.user == current_user %>
-            <%= link_to "編集", edit_post_path(@post), class: "glyphicon glyphicon-pencil btn btn-success" %>
-            <%= link_to "削除", post_path(@post), method: :delete,
-              data: {confirm: "本当に削除してよろしいですか？"}, class: "glyphicon glyphicon-tint btn btn-danger" %>
-          <% end %>
+          <i class="fa fa-comment"></i>
+          <span class="comment-count">
+            <%= @post.post_comments.count %>
+          </span>
+        </li>
+      </ul>
+      <ul class="post-content-list">
+        <li>
+          <%= render 'posts/tag_list', tag_list: @post.tag_list %>
         </li>
       </ul>
       <ul class="post-content-list">
@@ -38,19 +45,12 @@
         </li>
       </ul>
       <ul class="post-content-list">
-        <li class="favorite-btn">
-          <%= render 'favorites/favorite-btn', post: @post %>
-        </li>
         <li>
-          <i class="fa fa-comment"></i>
-          <span class="comment-count">
-            <%= @post.post_comments.count %>
-          </span>
-        </li>
-      </ul>
-      <ul class="post-content-list">
-        <li>
-          <%= render 'posts/tag_list', tag_list: @post.tag_list %>
+          <% if @post.user == current_user %>
+            <%= link_to "編集", edit_post_path(@post), class: "glyphicon glyphicon-pencil btn btn-success" %>
+            <%= link_to "削除", post_path(@post), method: :delete,
+              data: {confirm: "本当に削除してよろしいですか？"}, class: "glyphicon glyphicon-tint btn btn-danger" %>
+          <% end %>
         </li>
       </ul>
     </div>
