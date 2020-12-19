@@ -10,9 +10,13 @@
     <tbody>
       <tr>
         <td>
-          <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %></td>
+          <%= link_to user_path(user.id) do %>
+            <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %></td>
+          <% end %>
         <td>
-          <%= user.name %>
+          <%= link_to user_path(user.id) do %>
+            <%= user.name %>
+          <% end %>
         </td>
         <td>
           フォロー数：
@@ -22,10 +26,8 @@
           フォロワー数：
           <%= user.followers.count %>
         </td>
-        <td>
-          <%= link_to "Show", user_path(user.id) %>
-        </td>
       </tr>
     </tbody>
     <% end %>
   </table>
+  <%= link_to "戻る", user_path(@user) %>
