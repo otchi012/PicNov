@@ -76,7 +76,7 @@
         <td>
           <% if post.post_images.present? %>
             <% post.post_images.first(1).each do |image| %>
-              <%= attachment_image_tag image, :image, :fill, 60, 50, class: "default_image" %>
+              <%= attachment_image_tag image, :image, size: "60x50", class: "default_image" %>
             <% end %>
           <% else %>
             画像はありません。
