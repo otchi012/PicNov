@@ -21,6 +21,7 @@
          <%= f.label :"タグ", class: "col-sm-3 control-label" %>
          <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "col-sm-9 control-label" %>
         </div>
+        ※　,(カンマ)で区切ることで複数のタグをつけられます
       </div>
       <div class="actions col-xs-11">
 	     <%= f.submit "投稿する", class: "btn btn-primary btn-lg pull-right" %>
