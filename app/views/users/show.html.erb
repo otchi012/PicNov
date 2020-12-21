@@ -1,29 +1,29 @@
 <div class="row">
-  <div class="col-md-3 side-bar">
+  <div class="col-md-4 side-bar">
     <h2>プロフィール</h2>
-    <%= attachment_image_tag @user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %>
+    <div class="profile_image">
+      <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img-circle" %>
+    </div>
     <table class="table">
       <tbody>
         <tr></tr>
         <tr>
-          <th>ユーザー名</th>
           <th><%= @user.name %></th>
         </tr>
         <tr>
-          <th>自己紹介</th>
           <th><%= @user.introduction %></th>
         </tr>
         <tr>
-          <td>フォロー中</td>
           <td>
+            フォロー中：
             <%= link_to following_user_path(@user) do %>
               <%= @user.following.count %>
             <% end %>
           </td>
         </tr>
         <tr>
-          <td>フォロワー</td>
           <td>
+            フォロワー：
             <%= link_to followers_user_path(@user) do %>
               <%= @user.followers.count %>
             <% end %>
@@ -33,7 +33,7 @@
     </table>
     <div class="row">
       <% if @user.id == current_user.id %>
-        <%= link_to edit_user_path(current_user.id), class:"col-xs-12 btn btn-default" do %>
+        <%= link_to edit_user_path(current_user.id), class:"col-xs-8 col-xs-offset-2 btn btn-info" do %>
           <i class="glyphicon glyphicon-wrench">編集する</i>
         <% end %>
       <% else %>
@@ -45,7 +45,7 @@
       <% end %>
     </div>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-8">
     <%= render "posts/post_list", posts: @posts %>
   </div>
   <h4 class="text-center">
