@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+// $(document).ready(function () {  この表記ではリロードしなければいけない
 $(document).on ('ready turbolinks:load', function() {
   $("#images").skippr({
     // スライドショーの変化 ("fade" or "slide")

@@ -6,7 +6,7 @@
       <div class="col-xs-4 col-xs-offset-1">
         <div class="img_field">
           <% @post.post_images.first(1).each do |image| %>
-            <%= attachment_image_tag image, :image, :fill, 100, 100, class: "default_image" %>
+            <%= attachment_image_tag image, :image, size: "100x100", class: "default_image" %>
           <% end %>
         </div>
         <div class="form-group">
