@@ -48,8 +48,21 @@ header {
   width: 100%;
 }
 
-.title {
+.header-welcome {
+  margin: 20px;
+}
+
+.header-name {
+  font-weight: bold;
+}
+
+.header-title {
+  margin: 10px;
   font-size: 30px;
+}
+
+.header-search {
+  margin: 10px 50px 10px 10px;
 }
 
 #error_explanation {
