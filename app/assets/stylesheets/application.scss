@@ -35,7 +35,7 @@ body {
 #wrapper{
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+
 }
 
 header {
@@ -119,6 +119,9 @@ ul.footer-menu li {
   height: 550px;
 }
 
+.post-body-box {
+  margin-bottom: 10px;
+}
 
 .post-content {
   margin-top: 5%;
@@ -133,18 +136,18 @@ ul.post-content-list li {
   padding-left: 5%;
 }
 
-.post-body-box {
-  display: inline-block;
-}
 .post-image  {
-  display: inline-block;
+  margin: 15px 0 0 15px;
 }
 .index-post {
-  padding: 40px;
+  padding: 2px 10px;
   border: 1px solid #000;
+  display: flex;
 }
 .index-post>.post-content {
   display: inline-block;
+  padding-top: 10%;
+  padding-left: 40px;
 }
 .field {
   margin-top: 5%;
@@ -173,35 +176,32 @@ ul.post-content-list li {
 }
 
 // ABOUT
-.explain-pic {
-  width: 1200px;
-  height: 400px;
-  margin: 0 auto;
+.explain-pics {
+  margin-top: 30px;
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  &::before {
-    content: "";
-    display: inline-block;
-    background-image: image-url("PicNov-new.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: 1px solid #cccc;
-    width: 600px;
-    height: 300px;
-  }
-  &::after {
-    content: "";
-    display: inline-block;
-    background-image: image-url("PicNov-show.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: 1px solid #cccc;
-    margin-left:  10px;
-    width: 600px;
-    height: 300px;
-  }
 }
+.explain-pic-new {
+  background-image: image-url("PicNov-new.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 1px solid #cccc;
+  width: 100%;
+  height: 500px;
+}
+.explain-pic-show {
+  background-image: image-url("PicNov-show.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 1px solid #cccc;
+  margin-top: 30px;
+  width: 100%;
+  height: 500px;
+}
+
 // スライダー
 .hero {
     width: 100%;
@@ -209,7 +209,6 @@ ul.post-content-list li {
     position: relative;
 }
 .hero-post {
-  width: 500px;
   height: 500px;
 }
 .skippr {
