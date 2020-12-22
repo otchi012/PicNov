@@ -24,17 +24,16 @@
 }
 
 // application
-body {
-  background-image: image-url("PP_keshigomutopen.jpg");
-  background-color:rgba(255,255,255,0.8);
-  background-blend-mode:lighten;
-  background-size: cover;
-  background-position: center;
+html,　body {
+  height: 100%;
 }
 
 #wrapper{
+  width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
 
 }
 
@@ -46,6 +45,7 @@ header {
   top: 0;
   z-index:9999;
   width: 100%;
+  height: 100%;
 }
 
 .header-welcome {
@@ -82,11 +82,20 @@ header {
 
 .container {
   height: 100%;
+  background-image: image-url("PP_keshigomutopen.jpg");
+  background-color:rgba(255,255,255,0.8);
+  background-blend-mode:lighten;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-bottom: 100px;
 }
 
 footer {
   width: 100%;
   height: 100px;
+  position: absolute;
+  bottom: 0;
   background-color: #b0c4de;
   text-align: center;
   margin-top: auto;
