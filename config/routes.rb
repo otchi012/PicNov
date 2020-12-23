@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'homes#top'
+  post '/homes/guest_sign_in', to: 'homes#new_guest' #ゲストサインイン用
   get 'home/about' => 'homes#about'
   get 'search' => 'searchs#search'
   devise_for :users
