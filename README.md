@@ -38,7 +38,7 @@
 - 想いを書き綴りたくなった時
 
 ## 設計書（ワイヤーフレーム）
-https://drive.google.com/file/d/1fs0MC27HMoMpXd1tbV9wEWTDKHGhM81p/view?usp=sharing
+https://drive.google.com/file/d/1SxjqL-rB_rlPiMtHh8S36COWGk7UniIs/view?usp=sharing
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1KfNNfDE7ThSirMUVtxqt7GPpV4MJB4BLm365V_AMZLY/edit#gid=0
