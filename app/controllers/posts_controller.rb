@@ -9,9 +9,26 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
+    @post.save
+    # binding.pry
+    result = false
+    @post.post_images.each do |image|
+      result = Vision.check_unsafe_image_data(image)
+      # 一つでも不正コンテンツがあれば抜ける
+      if result == true
+        break
+      end
+    end
+    # saveされて且つ不正コンテンツがない場合は投稿できる
+    if @post.save && result == false
       flash[:notice] = '投稿を登録しました。'
       redirect_to post_path(@post)
+    # saveされたが不正コンテンツが一つでもある場合は削除してrenderする
+    elsif @post.save && result == true
+      @post.destroy
+      flash[:notice] = '画像が不適切です'
+      render :new
+    # バリデーションで引っかかった場合のrender
     else
       render :new
     end
@@ -44,12 +61,29 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
-      flash[:notice] = '投稿を更新しました。'
-      redirect_to post_path(@post)
-    else
+    @post.update(post_params)
+    render :edit unless @post.update(post_params)
+    result = false
+    @post.post_images.each do |image|
+      result = Vision.check_unsafe_image_data(image)
+      # 一つでも不正コンテンツがあれば抜ける
+      if result == true
+        break
+      end
+    end
+    if result == true
+      @post.destroy
+      flash[:notice] = '画像が不適切です'
       render :edit
     end
+    flash[:notice] = '投稿を更新しました。'
+    redirect_to post_path(@post)
+    # if @post.update(post_params)
+    #   flash[:notice] = '投稿を更新しました。'
+    #   redirect_to post_path(@post)
+    # else
+    #   render :edit
+    # end
   end
 
   def destroy
