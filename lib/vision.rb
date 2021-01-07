@@ -35,6 +35,8 @@ module Vision
 
       # APIレスポンス出力
       response = JSON.parse(response.body)['responses'][0]['safeSearchAnnotation']
+      # binding.pry
+      # アダルト系、暴力系コンテンツの可能性が高い、もしくは非常に高い場合はtrueで返す
       if response['adult'] == "LIKELY" || response['adult'] == "VERY_LIKELY"
         return true
       elsif response['violence'] == "LIKELY" || response['violence'] == "VERY_LIKELY"

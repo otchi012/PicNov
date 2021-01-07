@@ -9,26 +9,26 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    # binding.pry
-    result = false
-    @post.post_images.each do |image|
-      result = Vision.check_unsafe_image_data(image)
-      # 一つでも不正コンテンツがあれば抜ける
-      if result == true
-        break
+    if @post.save
+      result = false
+      @post.post_images.each do |image|
+        result = Vision.check_unsafe_image_data(image)
+        # 一つでも不正コンテンツがあれば抜ける
+        if result == true
+          break
+        end
       end
-    end
-    # saveされて且つ不正コンテンツがない場合は投稿できる
-    if @post.save && result == false
-      flash[:notice] = '投稿を登録しました。'
-      redirect_to post_path(@post)
-    # saveされたが不正コンテンツが一つでもある場合は削除してrenderする
-    elsif @post.save && result == true
-      @post.destroy
-      flash[:notice] = '画像が不適切です'
-      render :new
-    # バリデーションで引っかかった場合のrender
+      # 不正コンテンツがない場合は正常に投稿できる
+      if result == false
+        flash[:notice] = '投稿を登録しました。'
+        redirect_to post_path(@post)
+      # 不正コンテンツが一つでもある場合は削除してrender
+      else
+        @post.destroy
+        flash[:notice] = '画像が不適切です'
+        render :new
+      end
+      # バリデーションで引っかかった場合はrender
     else
       render :new
     end
@@ -36,11 +36,14 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    # タグ一覧
     @tags = Post.tag_counts_on(:tags).most_used(20)
+    # タグ名の表示
     @posts = Post.tagged_with("#{params[:tag_name]}") if params[:tag_name]
     # ランキング機能
     posts = @posts.includes(:favorited_users).
       sort { |a, b| b.favorited_users.size <=> a.favorited_users.size }
+    # ページネーション
     @posts = Kaminari.paginate_array(posts).page(params[:page]).per(5)
   end
 
@@ -61,29 +64,31 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    render :edit unless @post.update(post_params)
-    result = false
-    @post.post_images.each do |image|
-      result = Vision.check_unsafe_image_data(image)
-      # 一つでも不正コンテンツがあれば抜ける
-      if result == true
-        break
+    post_copy = @post.clone
+    if @post.update(post_params)
+      result = false
+      @post.post_images.each do |image|
+        result = Vision.check_unsafe_image_data(image)
+        # 一つでも不正コンテンツがあれば抜ける
+        if result == true
+          break
+        end
       end
-    end
-    if result == true
-      @post.destroy
-      flash[:notice] = '画像が不適切です'
+      # 不正コンテンツがない場合は投稿成功
+      if result == false
+        flash[:notice] = '投稿を更新しました。'
+        redirect_to post_path(@post)
+      # 不正コンテンツが一つでもある場合はコピーした状態に戻してrender
+      else
+        @post = post_copy
+        @post.save
+        flash[:notice] = '画像が不適切です'
+        render :edit
+      end
+    # バリデーション引っかかった場合のrender
+    else
       render :edit
     end
-    flash[:notice] = '投稿を更新しました。'
-    redirect_to post_path(@post)
-    # if @post.update(post_params)
-    #   flash[:notice] = '投稿を更新しました。'
-    #   redirect_to post_path(@post)
-    # else
-    #   render :edit
-    # end
   end
 
   def destroy
