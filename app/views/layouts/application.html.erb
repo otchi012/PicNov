@@ -60,7 +60,11 @@
       </nav>
     </header>
     <div class="container">
-      <p class="notice"><%= notice %></p>
+      <% if notice %>
+        <p class="notice"><%= notice %></p>
+      <% elsif flash[:alert] %>
+        <p class="alert"><%= flash[:alert] %></p>
+      <% end %>
       <%= yield %>
     </div>
     <footer>

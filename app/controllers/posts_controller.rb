@@ -25,7 +25,7 @@ class PostsController < ApplicationController
       # 不正コンテンツが一つでもある場合はsaveされたpostを削除してrender
       else
         @post.destroy
-        flash[:notice] = '画像が不適切です'
+        flash[:alert] = '画像が不適切です'
         render :new
       end
       # バリデーションで引っかかった場合はrender
