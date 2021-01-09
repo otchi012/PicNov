@@ -22,7 +22,7 @@ class PostsController < ApplicationController
       if result == false
         flash[:notice] = '投稿を登録しました。'
         redirect_to post_path(@post)
-      # 不正コンテンツが一つでもある場合は削除してrender
+      # 不正コンテンツが一つでもある場合はsaveされたpostを削除してrender
       else
         @post.destroy
         flash[:notice] = '画像が不適切です'
@@ -64,28 +64,9 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    post_copy = @post.clone
     if @post.update(post_params)
-      result = false
-      @post.post_images.each do |image|
-        result = Vision.check_unsafe_image_data(image)
-        # 一つでも不正コンテンツがあれば抜ける
-        if result == true
-          break
-        end
-      end
-      # 不正コンテンツがない場合は投稿成功
-      if result == false
-        flash[:notice] = '投稿を更新しました。'
-        redirect_to post_path(@post)
-      # 不正コンテンツが一つでもある場合はコピーした状態に戻してrender
-      else
-        @post = post_copy
-        @post.save
-        flash[:notice] = '画像が不適切です'
-        render :edit
-      end
-    # バリデーション引っかかった場合のrender
+      flash[:notice] = '投稿を更新しました。'
+      redirect_to post_path(@post)
     else
       render :edit
     end
