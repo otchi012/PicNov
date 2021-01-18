@@ -1,15 +1,14 @@
+<%= render "devise/shared/error_messages", resource: resource %>
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
     <div class="form-user style-1 rounded has-shadow-1">
       <div class="form-header text-center">
-          <h2 class="form-header-title">ユーザー登録</h2>
+        <h2 class="form-header-title">ユーザー登録</h2>
       </div>
       <div class="form-body">
         <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
           <div class="form-group has-icon">
             <label class="control-label sr-only" for="inputName">Name</label>
-
             <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName", placeholder:"名前"%>
             <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
           </div>
