@@ -13,17 +13,9 @@ class Post < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
-  def self.search(search, keyword)
-    if search == "forward_match"
-      @posts = Post.where("title LIKE?", "#{keyword}%")
-    elsif search == "backward_match"
-      @posts = Post.where("title LIKE?", "%#{keyword}")
-    elsif search == "perfect_match"
-      @posts = Post.where(title: keyword)
-    elsif search == "partial_match"
-      @posts = Post.where("title LIKE?", "%#{keyword}%")
-    else
-      @posts = Post.all
-    end
+  def self.search(keyword)
+    #部分一致のみの検索機能
+    return Post.all unless keyword
+    Post.where("title LIKE?", "%#{keyword}%")
   end
 end

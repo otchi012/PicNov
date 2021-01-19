@@ -36,17 +36,9 @@ class User < ApplicationRecord
     following.include?(user)
   end
 
-  def self.search(search, keyword)
-    if search == "forward_match"
-      @users = User.where("name LIKE?", "#{keyword}%")
-    elsif search == "backward_match"
-      @users = User.where("name LIKE?", "%#{keyword}")
-    elsif search == "perfect_match"
-      @users = User.where(name: keyword)
-    elsif search == "partial_match"
-      @users = User.where("name LIKE?", "%#{keyword}%")
-    else
-      @users = User.all
-    end
+  def self.search(keyword)
+    #部分一致のみの検索機能
+    return User.all unless keyword
+    User.where("name LIKE?", "%#{keyword}%")
   end
 end

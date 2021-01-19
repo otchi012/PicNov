@@ -56,7 +56,6 @@
             <%= form_with url:search_path, method: :get, local: true do |f| %>
               <%= f.text_field :keyword %>
               <%= f.select :model, [["ユーザー", "user"], ["投稿", "post"]] %>
-              <%= f.select :search, [["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]] %>
               <%= f.submit "検索", class: "btn btn-default" %>
             <% end %>
           <% end %>
