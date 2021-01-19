@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     if @post.save
       result = false
       @post.post_images.each do |image|
-        result = Vision.check_unsafe_image_data(image)
+        result = Vision.is_check_unsafe_image(image)
         # 一つでも不正コンテンツがあれば抜ける
         if result == true
           break
