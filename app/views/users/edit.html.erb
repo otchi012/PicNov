@@ -1,10 +1,10 @@
+<%= render "layouts/error_messages", resource: @user %>
 <div class="row">
   <div class="col-md-12">
     <%= attachment_image_tag @user, :profile_image, size: "100x100", format: 'jpeg', class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
     <h2 class="head-line title_h2 text-center">ユーザープロフィール編集</h2>
     <div class="edit-user">
       <%= form_with model:@user, local:true do |f| %>
-        <%= render "layouts/error_messages", resource: @user %>
         <div class="field">
           <label>ユーザー名</label>
           <%= f.text_field :name %>
