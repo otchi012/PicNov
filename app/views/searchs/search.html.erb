@@ -75,8 +75,10 @@
         </td>
         <td>
           <% if post.post_images.present? %>
-            <% post.post_images.first(1).each do |image| %>
-              <%= attachment_image_tag image, :image, size: "60x50", class: "default_image" %>
+            <%= link_to post_path(post.id) do %>
+              <% post.post_images.first(1).each do |image| %>
+                <%= attachment_image_tag image, :image, size: "60x50", class: "default_image" %>
+              <% end %>
             <% end %>
           <% else %>
             画像はありません。
