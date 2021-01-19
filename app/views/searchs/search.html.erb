@@ -19,7 +19,9 @@
           <% end %>
         </td>
         <td>
-          <%= user.name %>
+          <%= link_to user_path(user) do %>
+            <%= user.name %>
+          <% end %>
         </td>
         <td>
           フォロー数：
